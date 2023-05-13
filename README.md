@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# User Management Tool
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+User Management Tool is a web application developed to manage user data by pulling data from a user API and displaying it in a table format. It provides functionalities like creating users, listing users with sorting and pagination, deleting users, and editing user details.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Create new users with name, email, status, role, and last login fields.
+- List users with sorting and pagination options.
+- Delete users from the system.
+- Edit user details including name and role.
+- Display last login field as a string in RFC3339 format (optional).
+- UI components include a badge for status and a button component.
+- Pagination for easy navigation through the user list.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+These instructions will help you set up and run the User Management Tool on your local machine for development and testing purposes.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+- Node.js and npm should be installed on your machine.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+1. Clone the repository to your local machine:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Navigate to the project directory:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Install the dependencies:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Usage
 
-### `npm run eject`
+1. Start the development server:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2. Open your web browser and visit `http://localhost:3000` to access the User Management Tool.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Configuration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- You can modify the configuration settings of the User Management Tool in the `.env` file. Configure the API endpoints, authentication, or any other required settings in this file.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Technologies Used
 
-## Learn More
+- React.js: JavaScript library for building user interfaces.
+- React Query: Data fetching and state management library.
+- Tailwind CSS: Utility-first CSS framework.
+- ESLint: JavaScript and TypeScript linter.
+- Prettier: Code formatter.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com/) for providing a mock API service.
+- [Create React App](https://create-react-app.dev/) for bootstrapping the React project.
+- [React Table](https://react-table.tanstack.com/) for creating the user table component.
+
+## Contributing
+
+Contributions are welcome! If you find any issues or want to add new features, please open an issue or submit a pull request.
