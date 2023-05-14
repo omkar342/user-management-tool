@@ -2,13 +2,19 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useTable } from "react-table";
 import ReactPaginate from "react-paginate";
 import "./Table.css";
-import EditModal from "./EditModal";
+import EditModal from "../Modal Components/EditModal";
+import AddNewUserModal from "../Modal Components/AddNewUserModal";
+import { UserInfo } from "../Types/UserInfo";
+
+import { CSVLink } from "react-csv";
 
 const UserTable: React.FC = () => {
   const [users, setUsers] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddNewUserModalOpen, setIsAddNewUserModalOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
+  const [selectedUser, setSelectedUser] = useState<UserInfo | null>(null);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -68,6 +74,7 @@ const UserTable: React.FC = () => {
   const handleEdit = (row: any) => {
     // Handle edit action for the row
     setIsModalOpen(true);
+    setSelectedUser(row.original);
     setSelectedUserId(row.original.id);
   };
 
@@ -76,8 +83,54 @@ const UserTable: React.FC = () => {
     console.log("Delete:", row.original);
   };
 
+  const csvData = useMemo(() => {
+    return users.map((user) => ({
+      Name: user.name,
+      Email: user.email,
+      Phone: user.phone,
+      Website: user.website,
+    }));
+  }, [users]);
+
+  const addNewUserHandler = () => {
+    setIsAddNewUserModalOpen(true);
+  };
+
+  const handleUserAdded = (newUser: UserInfo) => {
+    // Update the users state with the new user
+    setUsers([...users, newUser]);
+  };
+
+  const handleUserEdited = (editedUser: UserInfo) => {
+    // Find the index of the edited user in the users array
+    const index = users.findIndex((user) => user.id === editedUser.id);
+    if (index !== -1) {
+      // If the user is found, update the user in the users array
+      const updatedUsers = [...users];
+      updatedUsers[index] = editedUser;
+      setUsers(updatedUsers);
+    }
+  };
+
   return (
-    <>
+    <div className="table-container">
+      <div className="utilButtons">
+        <CSVLink
+          data={csvData}
+          filename="user_table.csv"
+          className="bg-green-500 text-white py-1 px-2 rounded mt-4 inline-block mr-5"
+        >
+          Download as CSV
+        </CSVLink>
+        <div>
+          <button
+            className="bg-blue-500 text-white mt-4 px-2 py-1 rounded ml-5"
+            onClick={addNewUserHandler}
+          >
+            Add New User +
+          </button>
+        </div>
+      </div>
       <table {...getTableProps()} className="table w-full">
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -113,15 +166,27 @@ const UserTable: React.FC = () => {
         disabledClassName="pagination__link--disabled"
         activeClassName="pagination__link--active"
       />
+
       <EditModal
         isOpen={isModalOpen}
         onClose={() => {
           setIsModalOpen(false);
           setSelectedUserId(null);
+          console.log("It is closed now, Omkar");
         }}
         userId={selectedUserId}
+        user={selectedUser}
+        handleUserEdited={handleUserEdited}
       />
-    </>
+
+      <AddNewUserModal
+        isOpen={isAddNewUserModalOpen}
+        onClose={() => {
+          setIsAddNewUserModalOpen(false);
+        }}
+        handleUserAdded={handleUserAdded}
+      />
+    </div>
   );
 };
 
