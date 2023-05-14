@@ -22,10 +22,6 @@ const EditModal: React.FC<EditModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Perform form submission logic here
-    // For example, make API requests or update state
-    // Use the updated values from the state variables (name, email, phone, website)
-    // and send them to the API endpoint to update the user data
 
     fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",

@@ -1,6 +1,8 @@
 {
   "extends": "./node_modules/gts",
   "rules": {
-    "quotes": ["error", "double"]
+    "quotes": ["error", "double"],
+    "linebreak-style": "off",
+    "prettier/prettier": "off"
   }
 }
