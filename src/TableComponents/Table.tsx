@@ -78,11 +78,6 @@ const UserTable: React.FC = () => {
     setSelectedUserId(row.original.id);
   };
 
-  const handleDelete = (row: any) => {
-    // Handle delete action for the row
-    console.log("Delete:", row.original);
-  };
-
   const csvData = useMemo(() => {
     return users.map((user) => ({
       Name: user.name,
@@ -111,6 +106,15 @@ const UserTable: React.FC = () => {
       setUsers(updatedUsers);
     }
   };
+
+  const handleDelete = (row: any) => {
+    // Handle delete action for the row
+    const index = row.original.id;
+    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== index));
+    console.log("Delete:", row.original);
+  };
+
+  console.log(users, "users");
 
   return (
     <div className="table-container">
