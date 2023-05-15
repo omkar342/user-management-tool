@@ -10,7 +10,7 @@ type EditModalProps = {
   handleUserAdded: (user: UserInfo) => void;
 };
 
-const EditModal: React.FC<EditModalProps> = ({
+const AddNewUserModal: React.FC<EditModalProps> = ({
   isOpen,
   onClose,
   handleUserAdded,
@@ -113,7 +113,9 @@ const EditModal: React.FC<EditModalProps> = ({
             className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1"
           />
         </div>
-        <div className="mt-4">
+        <div className="mt-4 flex justify-end">
+          {" "}
+          {/* Added flex and justify-end */}
           <button
             type="submit"
             className="bg-blue-500 text-white py-2 px-4 rounded"
@@ -126,4 +128,4 @@ const EditModal: React.FC<EditModalProps> = ({
   );
 };
 
-export default EditModal;
+export default AddNewUserModal;
